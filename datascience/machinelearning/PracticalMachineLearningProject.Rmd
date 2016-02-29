@@ -1,0 +1,105 @@
+---
+Title: "Practical Machine Learning Course Project"
+---
+  
+## Executive Summary  
+The goal of your project is to predict the manner in which they did the exercise.
+
+This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases.
+
+### Data Preparation and Analysis
+
+Load required package
+
+```{r warning=FALSE, message=FALSE}
+library(caret)
+```
+
+#### Download and Load the training and testing data set
+
+```{r warning=FALSE, message=FALSE}
+url_training <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+file_dest_training <- "pml-training.csv"
+download.file(url=url_training, destfile=file_dest_training, method="curl")
+
+url_testing <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+file_dest_testing <- "pml-testing.csv"
+download.file(url=url_testing, destfile=file_dest_testing, method="curl")
+```
+
+Import the data treating empty values as NA
+```{r warning=FALSE, message=FALSE}
+pmlTrain <- read.csv(file_dest_training, na.strings=c("NA",""), header=TRUE)
+pmlTest <- read.csv(file_dest_testing, na.strings=c("NA",""), header=TRUE)
+```
+
+Remove variables that are close to NA
+```{r warning=FALSE, message=FALSE}
+closeToNA <- sapply(pmlTrain, function(x) mean(is.na(x))) > 0.95
+pmlTrain <- pmlTrain[, closeToNA==F]
+pmlTest <- pmlTest[, closeToNA==F]
+```
+
+Remove first 7 variables not useful for prediction (X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp, new_window, num_window)
+```{r warning=FALSE, message=FALSE}
+pmlTrain <- pmlTrain[, -(1:7)]
+pmlTest <- pmlTest[, -(1:7)]
+```
+
+Show remaining columns
+```{r warning=FALSE, message=FALSE}
+colnames(pmlTrain)
+colnames(pmlTest)
+```
+
+Split the training data set into a smaller training set (pmlTrain1) and a validation set (pmlTrain2)
+```{r warning=FALSE, message=FALSE}
+set.seed(333)
+inTrain <- createDataPartition(y=pmlTrain$classe, p=0.7, list=F)
+pmlTrain1 <- pmlTrain[inTrain, ]
+pmlTrain2 <- pmlTrain[-inTrain, ]
+```
+
+## Model Building
+
+#### Run Random Forest model to build model. Fit the model on pmlTrain1 and instruct the “train” function to use 3-fold cross-validation to select optimal tuning parameters for the model
+
+```{r warning=FALSE, message=FALSE}
+fitControl <- trainControl(method="cv", number=3, verboseIter=F)
+fit <- train(classe ~ ., data=pmlTrain1, method="rf", trControl=fitControl)
+fit$finalModel
+```
+
+#### Use fit model to predict the label in pmlTrain2, and show the confusion matrix to compare the predicted versus the actual labels
+```{r warning=FALSE, message=FALSE}
+preds <- predict(fit, newdata=pmlTrain2)
+confusionMatrix(pmlTrain2$classe, preds)
+```
+
+The accuracy is 99.44%, thus my predicted accuracy for the out-of-sample error is 0.56%. This is reasonable result, so I won't try more algorithms and would use Random Forests to predict on the test set
+
+#### Re-training the Selected Model using full training set (pmlTrain)
+```{r warning=FALSE, message=FALSE}
+fitControl <- trainControl(method="cv", number=3, verboseIter=F)
+fit <- train(classe ~ ., data=pmlTrain, method="rf", trControl=fitControl)
+```
+
+### Making Test Set Predictions
+
+Use the model fit on pmlTrain to predict the label for the observations in pmlTest
+```{r warning=FALSE, message=FALSE}
+preds <- predict(fit, newdata=pmlTest)
+```
+
+#### Out of Sample Error
+out of sample error is the “error rate you get on data set.”
+
+    Random Forest Testing: 1 - .9944 = 0.0056
+
+### CONCLUSION
+
+Received the following predictions by applying the model against the actual 20 item training set:
+```{r warning=FALSE, message=FALSE}
+print(preds)
+```
+ 
