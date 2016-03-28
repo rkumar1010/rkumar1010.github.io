@@ -1,5 +1,163 @@
+<!DOCTYPE html>
 <html>
-<body>
-Test Github
+<head>
+  <title>Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Developing Data Products">
+  <meta name="author" content="Rajeev Kumar">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Developing Data Products</h1>
+    <h2>Course Project</h2>
+    <p>Rajeev Kumar<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Nile River Flow (1871-1970)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This presentation is created for the Coursera course &quot;Developing Data Products&quot; project. The project is done to show that following concepts are understood</p>
+
+<ul>
+<li><p>Shiny to build the application</p></li>
+<li><p>Slidify to create project presentation</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Project</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A simple application called Nile River Flow (1871-1970) has been developed and deployed at: <a href="https://rkumar1010.shinyapps.io/NileApp/">https://rkumar1010.shinyapps.io/NileApp/</a></p>
+
+<p>The application allows the user to:</p>
+
+<ol>
+<li><p>Select the input - range of years.</p></li>
+<li><p>Select the output to be displayed on the plot.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application is using dataset &quot;Nile&quot; which is included with R by default. </p>
+
+<p>The Nile is a major north-flowing river in north-eastern Africa, generally regarded as the longest river in the world. It is 6,853 km (4,258 miles) long. The Nile is an &quot;international&quot; river as its water resources are shared by eleven countries, namely, Tanzania, Uganda, Rwanda, Burundi, Congo-Kinshasa, Kenya, Ethiopia, Eritrea, South Sudan, Sudan and Egypt. In particular, the Nile is the primary water source of Egypt and Sudan.</p>
+
+<p>The Dataset has measurements of the annual flow of the river Nile at Ashwan 1871–1970 and is a time series of length 100.</p>
+
+<p>Source code for the project is available on the GitHub.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">Nile
+</code></pre>
+
+<pre><code>## Time Series:
+## Start = 1871 
+## End = 1970 
+## Frequency = 1 
+##   [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994
+##  [15] 1020  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100
+##  [29]  774  840  874  694  940  833  701  916  692 1020 1050  969  831  726
+##  [43]  456  824  702 1120 1100  832  764  821  768  845  864  862  698  845
+##  [57]  744  796 1040  759  781  865  845  944  984  897  822 1010  771  676
+##  [71]  649  846  812  742  801 1040  860  874  848  890  744  749  838 1050
+##  [85]  918  986  797  923  975  815 1020  906  901 1170  912  746  919  718
+##  [99]  714  740
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Nile River Flow (1871-1970)'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Project'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Data'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
 </body>
-</html
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
